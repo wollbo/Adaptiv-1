@@ -3,15 +3,20 @@ function [ryy, rxy] = estimateakf(y, e, N)
 %y is measurements, x is desired signal, e is noise
 %N is the length of the estimated autocorrelations
 
-%ryy_old = autocorr(y, 'NumLags', N-1);
-ryy = xcorr(y, N-1, 'coeff');
-ryy = ryy(floor(length(ryy)/2)+1:end);
-%assert(isequal(ryy, ryy_old));
+ryy = xcorr(y, N-1, 'biased');
+ree = xcorr(e, N-1, 'biased');
+rye = xcorr(y, e, N-1);
+rey = xcorr(e, y, N-1);
 
-%ree_old = autocorr(e, 'NumLags', N-1);
-ree = xcorr(e, N-1, 'coeff');
-ree = ree(floor(length(ree)/2)+1:end);
+mid = floor(length(ryy)/2)+1;
+ryy = ryy(mid:end);
+ree = ree(mid:end);
+rey = rey(mid:end);
+rye = rye(mid:end);
 
-rxy = ryy - ree;
+
+
+
+rxy = ryy + ree - rey - rye;
 end
 
