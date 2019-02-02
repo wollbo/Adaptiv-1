@@ -1,22 +1,24 @@
 %% Adaptiv-1
 %% main
 
-[z, fs] = audioread('EQ2401project1data2019.wav');
-e = [z(1:4500)' z(19000:26000)' z(42000:51000)']';
+[y, fs] = audioread('EQ2401project1data2019.wav');
+e = [y(1:4500)' y(19000:26000)' y(42000:51000)']';
 
+delay = 50;
+
+[ryy, ree] = estimateakf(y, e, delay);
 
 %% FIR
+[xhatfir, thetaopt] = firwiener(y, ryy, ryy-ree);
 
-[rzz, ree] = estimateakf(z, e, 100);
-[xhat, thetaopt] = firwiener(z, rzz, rzz-ree);
+%% Non-causal
 
-%% IIR
-
-
-
+xhatncw = ncwiener(y, ryy, ryy-ree);
 
 
 %% Causal
+
+
 
 
 
