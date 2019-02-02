@@ -1,0 +1,12 @@
+function [] = firwiener(ryy, rxy)
+assert (length(ryy) == length(rxy))
+
+N = length(ryy); % Filter order
+
+sigmaYY = toeplitz(ryy);
+sigmaYx = rxy;
+
+thetaopt = 
+
+end
+
