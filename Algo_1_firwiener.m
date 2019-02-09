@@ -5,7 +5,7 @@
 
 %Apply Filter
 [ryy, rxy] = estimateakf(y, e, 51);
-[xhat, H] = firwiener (y, ryy, rxy);
+[xhat, H, theta] = firwiener (y, ryy, rxy);
 
 
 %Plot Filter Frequency Response

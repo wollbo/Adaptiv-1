@@ -12,7 +12,7 @@ mid = floor(length(ryy)/2)+1;
 ryy = ryy(mid:end);
 ree = ree(mid:end);
 rey = rey(mid:end)/(N-1);
-rye = rye(mid:end)/ (N-1);
+rye = rye(mid:end)/(N-1);
 
 rxx = ryy + ree - rey - rye;
 end

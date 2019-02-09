@@ -8,9 +8,12 @@ assert (length(ryy) == length(rxy))
 % phixy = fft(rxy, fftlen);
 % H = phixy ./ phiyy;
 
-
+N = length(ryy);
 %Old
-fftlen = 2^nextpow2(length(y) + length(ryy) - 1);
+fftlen = 2^(nextpow2(length(y) + length(ryy) - 1));
+
+%phiyy = fft(ryy.*hanning(N), fftlen);
+%phixy = fft(rxy.*hanning(N), fftlen);
 
 phiyy = fft(ryy, fftlen);
 phixy = fft(rxy, fftlen);
