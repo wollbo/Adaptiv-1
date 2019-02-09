@@ -1,21 +1,24 @@
-%Load Data
+%% Load Data
 [z, Fs] = audioread('EQ2401project1data2019.wav');
 [y,e] = separate(z);
 
+%% Plot Spectra
 figure()
 hold on
 grid on
 box off
 
-%Plot Spectra
+
 N = 512;
 Pee = pwelch(e,blackman(N), N/2);
 Pyy = pwelch(y,blackman(N), N/2);
-plot(linspace(0, Fs/2, N/2+1), 10*log10(Pee))
-plot(linspace(0, Fs/2, N/2+1), 10*log10(Pyy))
+%plot(linspace(0, Fs/2, N/2+1), 10*log10(Pee))
+%plot(linspace(0, Fs/2, N/2+1), 10*log10(Pyy))
+plot(linspace(0, Fs/2, N/2+1), Pee)
+plot(linspace(0, Fs/2, N/2+1), Pyy)
 legend('Noise', 'Speech and Noise')
 
-%Statistical Properties
+%% Statistical Properties
 me = mean(e);
 my = mean(y);
 vare = var(e);
@@ -23,7 +26,7 @@ vary = var(y);
 fprintf('E[e(n)] = %f \nE[y(n)] = %f \n', me, my);
 fprintf('var{e(n)} = %f \nvar{y(n)} = %f \n', vare, vary);
 
-%Frequency response of y over time
+%% Frequency response of y over time
 figure('Position', [100,100, 1500, 500])
 framelen = floor(20e-3*Fs);
 ulen = 64;

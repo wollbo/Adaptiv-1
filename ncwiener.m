@@ -8,22 +8,20 @@ assert (length(ryy) == length(rxy))
 % phixy = fft(rxy, fftlen);
 % H = phixy ./ phiyy;
 
-ryyplus = specfac(ryy');
-ryyminus = polystar(ryyplus);
+xhat = ncfilt(rxy, ryy, y);
 
-rxyplus = specfac(rxy');
-rxyminus = polystar(rxyplus);
-
-xhat = filter(rxyplus, ryyplus, y);
-xhat = acfilt(rxyminus, ryyminus, xhat);
+dirac = zeros(10^5,1);
+dirac(5000) = 1;
+h = ncfilt(rxy, ryy, dirac);
+H = fft(h, 10^5);
 
 %Old
-fftlen = 2^(nextpow2(length(y) + length(ryy) - 1));
+% fftlen = 2^(nextpow2(length(y) + length(ryy) - 1));
+% % 
+% phiyy = fft(ryy, fftlen);
+% phixy = fft(rxy, fftlen);
 % 
-phiyy = fft(ryy, fftlen);
-phixy = fft(rxy, fftlen);
-
-H = phixy ./ phiyy;
+% H = phixy ./ phiyy;
 % Y = fft(y, fftlen);
 % Xhat = Y .* H;
 % xhat = ifft(Xhat);

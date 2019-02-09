@@ -4,24 +4,21 @@ function [ryy, rxy] = estimateakf(y, e, N)
 %N is the length of the estimated autocorrelations
 y = y(1:length(e));
 
-ryy = xcorr(y, N-1);
-ree = xcorr(e, N-1);
-rye = xcorr(y, e, N-1);
-rey = xcorr(e, y, N-1);
+ryy = xcorr(y, N-1, 'coeff');
+ree = xcorr(e, N-1, 'coeff');
+
+%win = hanning((N-1)*2 + 1);
 
 mid = floor(length(ryy)/2)+1;
+%win = win(mid:end);
 ryy = ryy(mid:end);
 ree = ree(mid:end);
-rey = rey(mid:end);
-rye = rye(mid:end);
 
-rxy = ryy - rey;
+rxy = ree;
 figure()
 hold on
 plot(ryy)
 plot(ree)
-plot(rey)
-plot(rye)
-legend('ryy', 'ree', 'rey', 'rye')
+legend('ryy', 'ree')
 end
 

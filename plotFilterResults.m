@@ -1,6 +1,6 @@
-function plotFilterResults(z, xhat, H, Fs)
+function plotFilterResults(z, e, xhat, H, Fs)
 figure()
-numVer = 3;
+numVer = 4;
 numHor = 2;
 
 %Original signal
@@ -42,14 +42,25 @@ subplot(numVer,numHor,5)
 framelen = 2048;
 fftlen = 2048;
 Pz = pwelch(z, hanning(framelen), framelen/2, fftlen);
-plot(10*log10(Pz))
+plot(linspace(0, 0.5*Fs, length(Pz)), 10*log10(Pz))
+box off
+grid on
 title('Spectrum Original Signal')
 
 %Spectrum of filtered signal
 subplot(numVer,numHor,6)
 Pxhat = pwelch(xhat, hanning(framelen), framelen/2, fftlen);
-plot(10*log10(Pxhat))
+plot(linspace(0, 0.5*Fs, length(Pxhat)), 10*log10(Pxhat))
+box off
+grid on
 title('Spectrum Filtered Signal')
+
+subplot(numVer, numHor, 7)
+Pe = pwelch(e, hanning(framelen), framelen/2, fftlen);
+plot(linspace(0, 0.5*Fs, length(Pe)), 10*log10(Pe))
+box off
+grid on
+title('Spectrum Noise')
 
 end
 
