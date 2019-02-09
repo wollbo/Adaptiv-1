@@ -15,7 +15,7 @@ ree = ree(mid:end);
 rey = rey(mid:end);
 rye = rye(mid:end);
 
-rxy = ryy - rey;
+rxy = ryy - ree;
 figure()
 hold on
 plot(ryy)
@@ -23,5 +23,6 @@ plot(ree)
 plot(rey)
 plot(rye)
 legend('ryy', 'ree', 'rey', 'rye')
+plot(abs(fft(ree)))
 end
 

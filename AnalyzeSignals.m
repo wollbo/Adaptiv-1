@@ -1,7 +1,8 @@
 %Load Data
 [z, Fs] = audioread('EQ2401project1data2019.wav');
 [y,e] = separate(z);
-
+noise_indexes = [1:4500 19000:26000 42000:51000];
+y = z(noise_indexes);
 figure()
 hold on
 grid on
