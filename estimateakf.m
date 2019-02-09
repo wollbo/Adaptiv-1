@@ -14,11 +14,13 @@ mid = floor(length(ryy)/2)+1;
 ryy = ryy(mid:end);
 ree = ree(mid:end);
 
-rxy = ree;
+rxy = ryy - ree;
+
 figure()
 hold on
 plot(ryy)
 plot(ree)
 legend('ryy', 'ree')
+plot(abs(fft(ree)))
 end
 
