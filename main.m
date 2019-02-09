@@ -4,7 +4,7 @@
 [z, fs] = audioread('EQ2401project1data2019.wav');
 [y,e] = separate(z);
 
-delay = 20;
+delay = 10;
 
 [ryy, rxy] = estimateakf(y, e, delay);
 
@@ -20,7 +20,7 @@ soundsc(xhatncw)
 
 %% Causal
 
-xhatcw = cwiener(y, ryy, rxy);
+xhatcw = cwiener(z, ryy, rxy);
 soundsc(xhatcw)
 
 
