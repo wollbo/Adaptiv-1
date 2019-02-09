@@ -4,7 +4,7 @@
 [z, fs] = audioread('EQ2401project1data2019.wav');
 [y,e] = separate(z);
 
-delay = 10;
+delay = 20;
 
 [ryy, rxy] = estimateakf(y, e, delay);
 

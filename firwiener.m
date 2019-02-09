@@ -8,8 +8,10 @@ thetaopt = sigmaYY \ sigmaYx;
 
 xhat = filter(thetaopt, 1, y);
 
+
+
 %Get filter frequency response
 fftlen = 1024;
-H = fft(firparams, fftlen);
+H = fft(thetaopt, fftlen);
 end
 
