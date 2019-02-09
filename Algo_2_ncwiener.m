@@ -7,9 +7,9 @@
 [ryy, rxy] = estimateakf(y, e, 51);
 [xhat, H] = ncwiener (z, ryy, rxy);
 
-xhattest = filter(rxy, ryy, z);
+xhattest = acfilt(rxy, ryy, z);
 
 
 %Plot Filter Frequency Response
 %plotFilterResponse(H, Fs);
-plotFilterResults(z, xhat, H, Fs);
+plotFilterResults(z, xhattest, H, Fs);
