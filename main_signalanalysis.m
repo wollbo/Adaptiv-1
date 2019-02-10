@@ -1,12 +1,13 @@
 %% Load Data
+clear
 [z, Fs] = audioread('EQ2401project1data2019.wav');
 [y,e] = separate(z);
+
 %% Plot Spectra
 figure()
 hold on
 grid on
 box off
-
 
 N = 512;
 Pee = pwelch(e,blackman(N), N/2);

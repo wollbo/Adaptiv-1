@@ -29,3 +29,7 @@ soundsc(xhatc);
 pause(audioLength + 2);
 soundsc(xhatnc);
 pause(audioLength + 2);
+
+%% Plot Estimated Spectra
+plotSpec(phiyynum, phiyyden, phieenum, phieeden, phixxnum, phixxden, Fs);
+
