@@ -1,7 +1,8 @@
-function plotFilterResults(z, e, xhat, H, Fs)
+function plotFilterResults(z, e, xhat, H, Fs, plotTitle)
 figure()
 numVer = 4;
 numHor = 2;
+suptitle(plotTitle);
 
 %Original signal
 subplot(numVer,numHor,1)
@@ -32,6 +33,8 @@ ylabel('Magnitude (dB)')
 %Impulse response of filter
 subplot(numVer,numHor,4)
 h = ifft(H);
+h = h.*(abs(h)>1e-12);
+h = h(find(h,1,'first'):find(h,1,'last'));
 plot(h);
 grid on
 box off
