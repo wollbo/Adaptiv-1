@@ -1,4 +1,4 @@
-%% picks out e(n) %%
+%% Inverse filter
 
 [z, fs] = audioread('EQ2401project1data2019.wav');
 p = 20;
@@ -14,7 +14,9 @@ a_signal = levinson(ryy);
 e_noise = ree(1)-a_noise(2:end)*ree(2:end);
 e_signal = ryy(1)-a_signal(2:end)*ryy(2:end);
 
-[PhixyNum, PhixyDen, PhiyyNum, PhiyyDen] = spec_add(a_signal, e_signal, a_noise, e_noise);
+[PhixyNum, PhixyDen, PhiyyNum, PhiyyDen] = spec_add(a_signal, e_signal, a_noise, e_noise); 
+
+%PhiYY/PhiEE = 1 + PhiXX/PhiEE
 
 Hnum = conv(PhixyNum, PhiyyDen);
 Hden = conv(PhixyDen, PhiyyNum);
