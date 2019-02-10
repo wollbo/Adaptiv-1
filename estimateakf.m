@@ -4,10 +4,10 @@ function [ryy, ree] = estimateakf(y, e, N)
 %N is the length of the estimated autocorrelations
 y = y(1:length(e));
 
-ryy = xcorr(y, N-1, 'biased');
-ree = xcorr(e, N-1, 'biased');
+ryy = xcorr(y, y, N-1, 'biased');
+ree = xcorr(e, e, N-1, 'biased');
 
-py = abs(fft(y)).^2;
+% py = abs(fft(y)).^2;
 %win = hanning((N-1)*2 + 1);
 
 mid = floor(length(ryy)/2)+1;

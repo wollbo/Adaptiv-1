@@ -21,6 +21,10 @@ Hden = conv(PhixyDen, PhiyyNum);
 
 z_filt = ncfilt(Hnum,Hden,z);
 soundsc(z_filt)
+dirac = zeros(10^3,1);
+dirac(500) = 1;
+h = ncfilt(Hnum, Hden, dirac);
+H = fft(h, 2024);
 
 plotFilterResults(z, e, z_filt, H, fs)
 

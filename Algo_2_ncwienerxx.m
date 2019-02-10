@@ -11,16 +11,16 @@
 %[numxy, denxy]=add(phiynum,phiyden,-phienum,phieden);
 %num = conv(numxy, phiyden);
 %den = conv(denxy, phiynum);
-[phiyynum, phiyyden, phieenum, phieeden, ryy, ree] = estimateSpectra(z,e,51, 51);
-%[phixynum, phixyden]=add(phiyynum,phiyyden,-phieenum,phieeden);
-phixynum = phieenum;
-phixyden = phieeden;
+[phiyynum, phiyyden, phieenum, phieeden, phixxnum, phixxden, ryy, ree] = estimateSpectra(z,e,30, 51);
+%[phiyynum, phiyyden]=add(phixxnum,phixxden,phieenum,phieeden);
+phixynum = phixxnum;
+phixyden = phixxden;
 %[phixynum,phixyden]=rmczeros(phixynum,phixyden);
 
 %[phixynum, phiyyden]=eqsize(phixynum, phiyyden);
 %[phixyden, phiyynum]=eqsize(phixyden, phiyynum);
-Hnum = conv(phiyynum, phixyden);
-Hden = conv(phiyyden, phixynum);
+Hnum = conv(phixynum, phiyyden);
+Hden = conv(phixyden, phiyynum);
 [Hnum,Hden]=rmczeros(Hnum,Hden);
 
 xhat = ncfilt(Hnum, Hden, z);

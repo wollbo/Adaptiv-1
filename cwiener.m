@@ -7,8 +7,8 @@ ryyminus = polystar(ryyplus);
 % causal part
 [causnum, causden] = pos(rxy, ryyminus);
 
-B = causnum
-A = causden .*ryyplus
+B = causnum;
+A = causden .*ryyplus;
 
 
 xhat = ncfilt(B, A, y);
