@@ -19,7 +19,7 @@
 % dirac(500) = 1;
 % h = cw(dirac,phiyynum,phiyyden,phixynum,phixyden,m);
 
-[phiyynum, phiyyden, phieenum, phieeden, phixxnum, phixxden, ryy, ree] = estimateSpectra(y,e,35, 51);
+[phiyynum, phiyyden, phieenum, phieeden, phixxnum, phixxden] = estimateSpectra(y,e,35, 51);
 phixynum = phixxnum;
 phixyden = phixxden;
 

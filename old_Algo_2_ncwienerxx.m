@@ -11,7 +11,7 @@
 %[numxy, denxy]=add(phiynum,phiyden,-phienum,phieden);
 %num = conv(numxy, phiyden);
 %den = conv(denxy, phiynum);
-[phiyynum, phiyyden, phieenum, phieeden, phixxnum, phixxden, ryy, ree] = estimateSpectra(z,e,30, 51);
+[phiyynum, phiyyden, phieenum, phieeden, phixxnum, phixxden, ryy, ree] = estimateSpectra(z,e,30);
 %[phiyynum, phiyyden]=add(phixxnum,phixxden,phieenum,phieeden);
 phixynum = phixxnum;
 phixyden = phixxden;

@@ -1,4 +1,4 @@
-function [xhat, H, thetaopt] = firwiener(y, ryy, rxy)
+function [xhat, H, thetaopt] = firwiener(y, rxy, ryy)
 assert (length(ryy) == length(rxy))
 
 sigmaYY = toeplitz(ryy);

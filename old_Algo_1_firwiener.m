@@ -6,7 +6,7 @@
 [y,e] = separate(z);
 
 %Apply Filter
-[ryy, ree] = estimateakf(y, e, 500);
+[ryy, ree, rxx] = estimateakf(y, e, 500);
 %[phiyynum, phiyyden, phieenum, phieeden, ryy, ree] = estimateSpectra(y,e,51, 50);
 rxy = ryy - ree;
 [xhat, H, theta] = firwiener (z, ryy, rxy);

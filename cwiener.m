@@ -1,18 +1,10 @@
-function [xhat, H] = cwiener(y, ryy, rxy)
-assert (length(ryy) == length(rxy))
+function [xhat, H] = cwiener (z, phixynum,phixyden,phiyynum,phiyyden)
+m = 0;
+[xhat,~,~] = cw(z,phixynum,phixyden,phiyynum,phiyyden,m);
+dirac = zeros(10^3,1);
+dirac(500) = 1;
+h = cw(dirac,phixynum,phixyden,phiyynum,phiyyden,m);
 
-ryyplus = specfac(ryy');
-ryyminus = polystar(ryyplus);
-
-% causal part
-[causnum, causden] = pos(rxy, ryyminus);
-
-B = causnum;
-A = causden .*ryyplus;
-
-
-xhat = ncfilt(B, A, y);
-
-fftlen = 1024;
-H = fft(B, fftlen)./fft(A, fftlen);
+H = fft(h, 1024);
 end
+
