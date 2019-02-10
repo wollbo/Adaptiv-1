@@ -12,10 +12,14 @@
 
 %num = conv(numxy, phiyden);
 %den = conv(denxy, phiynum);
-[phiyynum, phiyyden, phieenum, phieeden] = estimateSpectra(y,e,30);
+[phiyynum, phiyyden, phieenum, phieeden, ryy, ree] = estimateSpectra(y,e,51, 51);
 [phixynum, phixyden]=add(phiyynum,phiyyden,-phieenum,phieeden);
+
+%[phixynum, phiyyden]=eqsize(phixynum, phiyyden);
+%[phixyden, phiyynum]=eqsize(phixyden, phiyynum);
 Hnum = conv(phixynum, phiyyden);
-Hden = conv(phiyynum, phixyden);
+Hden = conv(phixyden, phiyynum);
+%[Hnum,Hden]=rmczeros(Hnum,Hden);
 
 xhat = ncfilt(Hnum, Hden, z);
 dirac = zeros(10^3,1);
