@@ -3,28 +3,26 @@
 %e = [y(1:4500); y(19000:26000); y(42000:51000)];
 [y,e] = separate(z);
 
-[ryy, ree] = estimateakf(y, e, 100);
-ary = ar(y, 41);
-are = ar(e, 41);
-%ryy = ar2cov(ary.a, var(y), 250);
-%ree = ar2cov(are.a, var(e), 250);
+% [ryy, ree] = estimateakf(y, e, 100);
+% ary = ar(y, 60);
+% are = ar(e, 60);
+% 
+% [num, den] = filtspec(ary.a,are.a, 1);
+%[numxy, denxy]=add(phiynum,phiyden,-phienum,phieden);
 
-%0.0012
-%0.0049
+%num = conv(numxy, phiyden);
+%den = conv(denxy, phiynum);
+[phiyynum, phiyyden, phieenum, phieeden] = estimateSpectra(y,e,30);
+[phixynum, phixyden]=add(phiyynum,phiyyden,-phieenum,phieeden);
+Hnum = conv(phixynum, phiyyden);
+Hden = conv(phiyynum, phixyden);
 
-[phienum, phieden] = filtspec(are.a,1, 0.004);
-[phiynum, phiyden] = filtspec(ary.a,1, 0.008);
-[numxy, denxy]=add(phiynum,phiyden,-phienum,phieden);
-
-num = conv(numxy, phiyden);
-den = conv(denxy, phiynum);
-
-xhat = ncfilt(num, den, z);
+xhat = ncfilt(Hnum, Hden, z);
 dirac = zeros(10^3,1);
 dirac(500) = 1;
-h = ncfilt(num, den, dirac);
+h = ncfilt(Hnum, Hden, dirac);
 H = fft(h, 2024);
-
+%xhat = z - ehat;
 % M = 128;
 % Pee = pwelch(e,blackman(M), M/2, 'twosided');
 % Pyy = pwelch(y,blackman(M), M/2, 'twosided');

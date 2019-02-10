@@ -4,20 +4,14 @@
 [y,e] = separate(z);
 
 [ryy, ree] = estimateakf(y, e, 100);
-ary = ar(y, 41);
-are = ar(e, 41);
-%ryy = ar2cov(ary.a, var(y), 250);
-%ree = ar2cov(are.a, var(e), 250);
+ary = ar(y, 60);
+are = ar(e, 60);
 
-%0.0012
-%0.0049
+[num, den] = filtspec(are.a,ary.a, 1);
+%[numxy, denxy]=add(phiynum,phiyden,-phienum,phieden);
 
-[phienum, phieden] = filtspec(are.a,1, 0.004);
-[phiynum, phiyden] = filtspec(ary.a,1, 0.008);
-[numxy, denxy]=add(phiynum,phiyden,-phienum,phieden);
-
-num = conv(numxy, phiyden);
-den = conv(denxy, phiynum);
+%num = conv(numxy, phiyden);
+%den = conv(denxy, phiynum);
 
 xhat = ncfilt(num, den, z);
 dirac = zeros(10^3,1);

@@ -1,8 +1,6 @@
 %% Load Data
 [z, Fs] = audioread('EQ2401project1data2019.wav');
 [y,e] = separate(z);
-<<<<<<< HEAD
-
 %% Plot Spectra
 noise_indexes = [1:4500 19000:26000 42000:51000];
 y = z(noise_indexes);
@@ -22,6 +20,7 @@ plot(linspace(0, Fs/2, N/2+1), Pyy)
 legend('Noise', 'Speech and Noise')
 
 %% Statistical Properties
+[y,e] = separate(z);
 me = mean(e);
 my = mean(y);
 vare = var(e);
