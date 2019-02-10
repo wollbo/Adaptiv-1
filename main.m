@@ -1,4 +1,7 @@
 %% Adaptiv-1
+
+
+
 %% main
 % run soundsc(z) for reference
 
@@ -8,12 +11,12 @@
 
 delay = 20;
 
-[ryy, rxy] = estimateakf(y, e, delay);
+[ryy, ree] = estimateakf(y, e, delay);
 
 
 %% FIR
 
-[xhatfir, thetaopt] = firwiener(z, ryy, rxy);
+[xhatfir, thetaopt] = firwiener(z, ryy, ryy-ree);
 soundsc(xhatfir)
 
 %% Non-causal
